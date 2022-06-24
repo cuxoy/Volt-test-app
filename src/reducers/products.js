@@ -1,6 +1,7 @@
 const initialState = {
   products: [],
   productsLoadingStatus: "idle",
+  productFormVisibility: "hidden",
 };
 
 const products = (state = initialState, action) => {
@@ -29,10 +30,20 @@ const products = (state = initialState, action) => {
         productsLoadingStatus: "error",
       };
     case "PRODUCT_ADDED":
-      return{
+      return {
         ...state,
-         products:[...state.products, action.payload]
-      }
+        products: [...state.products, action.payload],
+      };
+    case "PRODUCT_FORM_VISIBLE":
+      return {
+        ...state,
+        productFormVisibility: "visible",
+      };
+    case "PRODUCT_FORM_HIDDEN":
+      return {
+        ...state,
+        productFormVisibility: "hidden",
+      };
     default:
       return state;
   }

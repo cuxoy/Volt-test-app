@@ -21,24 +21,9 @@
   ],
   "products": [
     {
-      "id": 4,
-      "name": "Parachute Pants",
-      "price": 29.99
-    },
-    {
-      "id": 8,
-      "name": "Phone Holder",
-      "price": 9.99
-    },
-    {
       "id": 5,
       "name": "Pet Rock",
       "price": 5.99
-    },
-    {
-      "id": 6,
-      "name": "Egg Timer",
-      "price": 15.99
     },
     {
       "id": 7,
@@ -46,9 +31,19 @@
       "price": 21.99
     },
     {
-      "id": 15,
-      "name": "something",
-      "price": 100
+      "id": "b2cbd989-9b5d-4f53-ba64-6d3f3ada0000",
+      "name": "Notebook",
+      "price": "200"
+    },
+    {
+      "id": "14387a10-acd4-4f03-8688-50422b67c80d",
+      "name": "Phone",
+      "price": "300"
+    },
+    {
+      "id": "39390b31-738e-4b61-b8c6-0b5cbcfdc374",
+      "name": "asdasd",
+      "price": "121212"
     }
   ],
   "invoices": []
