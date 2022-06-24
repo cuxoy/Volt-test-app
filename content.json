@@ -44,9 +44,12 @@
       "id": 7,
       "name": "Neon Green Hat",
       "price": 21.99
+    },
+    {
+      "id": 15,
+      "name": "something",
+      "price": 100
     }
   ],
-  "invoices":[
-    
-  ]
+  "invoices": []
 }

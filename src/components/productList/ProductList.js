@@ -1,15 +1,39 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../../actions/actions";
+import {
+  fetchProducts,
+  deleteProduct,
+  addProduct,
+} from "../../actions/actions";
 import "./productList.scss";
 
 const ProductList = () => {
-
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
+
+  const onDelete = (id) => {
+    dispatch(deleteProduct(id));
+  };
+
+  const onAddProduct = () => {
+    dispatch(addProduct());
+  };
+
+  const productsList = useSelector((state) => state.products.products).map(
+    (item, i) => {
+      return (
+        <tr className="products-title">
+          <td>{i + 1}</td>
+          <td>{item.name}</td>
+          <td>{item.price + " $"}</td>
+          <td onClick={() => onDelete(item.id)}>delete</td>
+        </tr>
+      );
+    }
+  );
 
   return (
     <div className="product-list__container">
@@ -18,7 +42,7 @@ const ProductList = () => {
           <h2>Product list</h2>
         </div>
         <div className="product-list__create-btn">
-          <div className="create-text">Create</div>
+          <div className="create-text" onClick={onAddProduct}>Create</div>
         </div>
       </div>
       <table>
@@ -27,16 +51,7 @@ const ProductList = () => {
           <th>Name</th>
           <th>Price</th>
         </tr>
-        <tr className="products-title">
-          <td>1</td>
-          <td>Mercedes-Benz</td>
-          <td>12 $</td>
-        </tr>
-        <tr className="products-title">
-          <td>1</td>
-          <td>Mercedes-Benz</td>
-          <td>12 $</td>
-        </tr>
+        {productsList}
       </table>
       <ul className="products"></ul>
     </div>
