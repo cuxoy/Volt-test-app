@@ -1,0 +1,15 @@
+.header {
+  border-bottom: 1px solid #a9a8a87e;
+  background-color: #d4d4d448;
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+  }
+  &__links-list {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    list-style: none;
+  }
+}
