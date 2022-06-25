@@ -4,69 +4,89 @@ import {
   fetchProducts,
   deleteProduct,
   addProduct,
-  productFormVisible,
-  productFormHidden,
 } from "../../actions/actions";
 import { v4 as uuidv4 } from "uuid";
 import "./productList.scss";
 import deleteImg from "../../icons/delete.png";
 
 const ProductList = () => {
-  const [ nameValue, setNameValue ] = useState("");
-  const [ priceValue, setPriceValue ] = useState("");
+  const [nameValue, setNameValue] = useState("");
+  const [priceValue, setPriceValue] = useState("");
+  const [bgColor, setBgColor] = useState("#fff");
+  const [formVisibility, setFormVisibility] = useState("hidden");
+  const [deleteConfirm, setDeleteConfirm] = useState("hidden");
+  const [deleteId, setDeleteId] = useState("");
+  const [productForDelete, setProductForDelete] = useState({
+    name: "",
+    price: "",
+  });
+  const productFormVisibility = useSelector(
+    (state) => state.products.productFormVisibility
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
 
-  const productFormVisibility = useSelector(
-    (state) => state.products.productFormVisibility
-  );
-
   const onFormVisible = () => {
-    dispatch(productFormVisible());
+    setFormVisibility("visible");
+    setBgColor("#4e4e4ea7");
   };
 
   const onFormClosed = () => {
-    dispatch(productFormHidden());
+    setFormVisibility("hidden");
     setNameValue("");
     setPriceValue("");
+    setBgColor("#fff");
   };
 
-  const onDelete = (id) => {
-    dispatch(deleteProduct(id));
+  const OnDeleteConfirm = () => {
+    dispatch(deleteProduct(deleteId));
+    onDeleteCancel();
+  };
+  const onDeleteCancel = () => {
+    setDeleteConfirm("hidden");
+    setBgColor("#fff");
+    setProductForDelete({ name: "", price: "" });
+  };
+  const onDelete = (id, name, price) => {
+    setDeleteId(id);
+    setProductForDelete({ name, price });
+    setBgColor("#4e4e4ea7");
+    setDeleteConfirm("visible");
   };
 
   const onAddProduct = (e) => {
     e.preventDefault();
     dispatch(addProduct(uuidv4(), e.target.name.value, e.target.price.value));
     onFormClosed();
-    console.log(e.target.name.value);
   };
-
 
   const productsList = useSelector((state) => state.products.products).map(
     (item, i) => {
       return (
-        <tr className="products-title">
-          <td>{i + 1}</td>
-          <td>{item.name}</td>
-          <td>{item.price + " $"}</td>
-          <td onClick={() => onDelete(item.id)}>
-            <img src={deleteImg} alt="delete" className="delete-img" />
-          </td>
-        </tr>
+        <>
+          <tr className="products-title">
+            <td>{i + 1}</td>
+            <td>{item.name}</td>
+            <td>{item.price + " $"}</td>
+            <td onClick={() => onDelete(item.id, item.name, item.price)}>
+              <img src={deleteImg} alt="delete" className="delete-img" />
+            </td>
+          </tr>
+        </>
       );
     }
   );
 
   return (
-    <div className="product-list">
+    <div className="product-list" style={{ backgroundColor: bgColor }}>
       <div className="product-list__container">
         <div
           className="product-list__modal"
-          style={{ visibility: productFormVisibility }}
+          style={{ visibility: formVisibility }}
         >
           <h3 className="product-list__modal__title">Create new product</h3>
           <form onSubmit={onAddProduct}>
@@ -106,10 +126,8 @@ const ProductList = () => {
           <div className="product-list__subheader">
             <h2>Product list</h2>
           </div>
-          <div className="product-list__create-btn">
-            <div className="create-text" onClick={onFormVisible}>
-              Create
-            </div>
+          <div className="product-list__create-btn" onClick={onFormVisible}>
+            <div className="create-text">Create</div>
           </div>
         </div>
         <table>
@@ -120,7 +138,19 @@ const ProductList = () => {
           </tr>
           {productsList}
         </table>
-        <ul className="products"></ul>
+        <div
+          className="delete-confirmation"
+          style={{ visibility: deleteConfirm }}
+        >
+          <h4>Confirm Deleting</h4>
+          <span>
+            {productForDelete.name} : {productForDelete.price}${" "}
+          </span>
+          <div className="delete-btns">
+            <button onClick={OnDeleteConfirm}>Confirm</button>
+            <button onClick={onDeleteCancel}>Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
   );

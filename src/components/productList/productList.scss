@@ -80,7 +80,7 @@
       width: 450px;
     }
     &:nth-of-type(3) {
-      width: 145px;
+      width: 118px;
     }
   }
   td {
@@ -103,9 +103,24 @@
 .delete-img {
   width: 20px;
   height: auto;
-  &:hover{
+  &:hover {
     cursor: pointer;
     transition: all 0.3s ease;
-      transform: translatey(-10%);
+    transform: translatey(-10%);
   }
+}
+.delete-confirmation {
+  text-align: center;
+  width: 400px;
+  height: 170px;
+  background-color: azure;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translatex(-50%);
+}
+.delete-btns {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
 }

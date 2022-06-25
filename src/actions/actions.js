@@ -50,16 +50,5 @@ const productAdded = (product) => {
   };
 };
 
-export const productFormVisible = () => {
-  return {
-    type: "PRODUCT_FORM_VISIBLE"
-  };
-};
-
-export const productFormHidden = () => {
-  return {
-    type: "PRODUCT_FORM_HIDDEN"
-  };
-};
 
 

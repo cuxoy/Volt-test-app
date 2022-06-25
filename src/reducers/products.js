@@ -1,7 +1,6 @@
 const initialState = {
   products: [],
-  productsLoadingStatus: "idle",
-  productFormVisibility: "hidden",
+  productsLoadingStatus: "idle"
 };
 
 const products = (state = initialState, action) => {
@@ -33,16 +32,6 @@ const products = (state = initialState, action) => {
       return {
         ...state,
         products: [...state.products, action.payload],
-      };
-    case "PRODUCT_FORM_VISIBLE":
-      return {
-        ...state,
-        productFormVisibility: "visible",
-      };
-    case "PRODUCT_FORM_HIDDEN":
-      return {
-        ...state,
-        productFormVisibility: "hidden",
       };
     default:
       return state;
