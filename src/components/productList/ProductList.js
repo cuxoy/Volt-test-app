@@ -4,7 +4,7 @@ import {
   fetchProducts,
   deleteProduct,
   addProduct,
-} from "../../actions/actions";
+} from "../../actions/productsActions";
 import { v4 as uuidv4 } from "uuid";
 import "./productList.scss";
 import deleteImg from "../../icons/delete.png";

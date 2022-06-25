@@ -17,6 +17,12 @@
       "name": "John Draper",
       "address": "890 Main St, Fontana IL 31450",
       "phone": "555-534-2342"
+    },
+    {
+      "id": "14314dd4-5467-4495-b926-283e7ece620e",
+      "name": "Dima Suhar",
+      "address": "Киев",
+      "phone": "0662569426"
     }
   ],
   "products": [
@@ -46,8 +52,8 @@
       "price": "12"
     },
     {
-      "id": "5c685217-415d-4839-8f27-2bc987025cb7",
-      "name": "qwqwqw",
+      "id": "74ca9cba-0d7b-4038-9e31-6b61c77c0b73",
+      "name": "eeeee",
       "price": "123"
     }
   ],

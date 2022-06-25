@@ -1,12 +1,14 @@
 import Header from "./components/header/Header";
 import ProductList from "./components/productList/ProductList";
+import CustomersList from "./components/customersList/CustomersList";
 import "./App.css";
 
 function App() {
   return (
     <div>
       <Header />
-      <ProductList />
+      <CustomersList/>
+      {/* <ProductList /> */}
     </div>
   );
 }
