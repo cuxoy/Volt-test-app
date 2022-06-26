@@ -13,7 +13,7 @@ export const deleteCustomer = (id) => async (next) => {
   next(customerDeleted(id));
 };
 
-export const addCustomer = (id ,name, address, tel) => async (next) => {
+export const addCustomer = (id, name, address, tel) => async (next) => {
   const newCustomer = { id: id, name: name, address: address, phone: tel };
   const response = await fetch(`http://localhost:3001/customers`, {
     method: "POST",

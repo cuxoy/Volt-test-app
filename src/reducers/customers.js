@@ -33,6 +33,11 @@ const customers = (state = initialState, action) => {
         ...state,
         customers: [...state.customers, action.payload],
       };
+    case "CUSTOMER_CHANGED":
+      return{
+        ...state,
+        customers:[]
+      }
     default:
       return state;
   }

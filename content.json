@@ -19,10 +19,28 @@
       "phone": "555-534-2342"
     },
     {
-      "id": "14314dd4-5467-4495-b926-283e7ece620e",
+      "id": "b923abff-eaa6-465a-9dee-9336bfd8ef11",
       "name": "Dima Suhar",
       "address": "Киев",
       "phone": "0662569426"
+    },
+    {
+      "id": "520122cc-d80f-4614-a9e5-776cfc2661fc",
+      "name": "Dima Suhar",
+      "address": "Киев",
+      "phone": "0662569426"
+    },
+    {
+      "id": "b3601519-2e54-45d0-9aa2-f6ff0b96acb6",
+      "name": "Tamila",
+      "address": "Golovuriv st #125",
+      "phone": "095 536 74 98"
+    },
+    {
+      "id": "a4b75a7a-c848-4999-867d-930a76491e75",
+      "name": "Olya",
+      "address": "Киев",
+      "phone": "0505548985"
     }
   ],
   "products": [
@@ -52,9 +70,24 @@
       "price": "12"
     },
     {
-      "id": "74ca9cba-0d7b-4038-9e31-6b61c77c0b73",
-      "name": "eeeee",
-      "price": "123"
+      "id": "305da0d3-43dc-4833-a6e6-b1965a4dba2e",
+      "name": "book",
+      "price": "152"
+    },
+    {
+      "id": "c7849734-9280-4a51-b1d3-d2f256fcea6c",
+      "name": "gun",
+      "price": "155"
+    },
+    {
+      "id": "2db2d600-23d0-4a27-8e65-9e244e3c03e8",
+      "name": "chocolat",
+      "price": "500"
+    },
+    {
+      "id": "e17dfcc7-5836-4191-89a4-92d2a8271476",
+      "name": "banan",
+      "price": "400"
     }
   ],
   "invoices": []

@@ -4,6 +4,7 @@ import {
   fetchCustomers,
   deleteCustomer,
   addCustomer,
+  changeCustomer,
 } from "../../actions/customersActions";
 import { v4 as uuidv4 } from "uuid";
 import "./customersList.scss";
@@ -91,6 +92,34 @@ const CustomersList = () => {
   return (
     <div className="customer-list" style={{ backgroundColor: bgColor }}>
       <div className="customer-list__container">
+        <div className="customer-list__header">
+          <div className="customer-list__subheader">
+            <h2>Customer list</h2>
+          </div>
+          <div className="customer-list__create-btn" onClick={onFormVisible}>
+            <div className="create-text">Create</div>
+          </div>
+        </div>
+        <table>
+          <tr className="customers-title">
+            <th>#</th>
+            <th>Name</th>
+            <th>Adress</th>
+            <th>Phone number</th>
+          </tr>
+          {customersList}
+        </table>
+        <div
+          className="delete-confirmation"
+          style={{ visibility: deleteConfirm }}
+        >
+          <h4>Confirm Deleting</h4>
+          <span>{customerForDelete}</span>
+          <div className="delete-btns">
+            <button onClick={OnDeleteConfirm}>Confirm</button>
+            <button onClick={onDeleteCancel}>Cancel</button>
+          </div>
+        </div>
         <div
           className="customer-list__modal"
           style={{ visibility: formVisibility }}
@@ -140,34 +169,6 @@ const CustomersList = () => {
               </button>
             </div>
           </form>
-        </div>
-        <div className="customer-list__header">
-          <div className="customer-list__subheader">
-            <h2>Customer list</h2>
-          </div>
-          <div className="customer-list__create-btn" onClick={onFormVisible}>
-            <div className="create-text">Create</div>
-          </div>
-        </div>
-        <table>
-          <tr className="customers-title">
-            <th>#</th>
-            <th>Name</th>
-            <th>Adress</th>
-            <th>Phone number</th>
-          </tr>
-          {customersList}
-        </table>
-        <div
-          className="delete-confirmation"
-          style={{ visibility: deleteConfirm }}
-        >
-          <h4>Confirm Deleting</h4>
-          <span>{customerForDelete}</span>
-          <div className="delete-btns">
-            <button onClick={OnDeleteConfirm}>Confirm</button>
-            <button onClick={onDeleteCancel}>Cancel</button>
-          </div>
         </div>
       </div>
     </div>
