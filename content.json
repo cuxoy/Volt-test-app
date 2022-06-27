@@ -105,15 +105,6 @@
       ]
     },
     {
-      "id": "6f3299a3-7c7a-44f7-9a39-0ef720558df5",
-      "customer": "Dima Suhar",
-      "price": "1200.00",
-      "descount": "40",
-      "products": [
-        "chocolat : 4 items"
-      ]
-    },
-    {
       "id": "0c297cfe-3c10-424a-9c76-b0b3cb18cd41",
       "customer": "Dima Suhar",
       "price": "1222",
@@ -132,6 +123,15 @@
       "descount": "11",
       "products": [
         "chocolat : 4 items"
+      ]
+    },
+    {
+      "id": "a656dc1f-f29b-41e6-b83d-8f4675e2c523",
+      "customer": "Tamila",
+      "price": "396.00",
+      "descount": "1",
+      "products": [
+        "banan : 1 items"
       ]
     }
   ]

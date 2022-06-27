@@ -7,7 +7,7 @@ const Header = () => {
       <nav className="header__container">
         <ul className="header__links-list">
           <li>
-            <NavLink to="/invoiceApp">Invoice App</NavLink>
+            <NavLink to="/">Invoice App</NavLink>
           </li>
           <li>
             <NavLink to="/invoiceList">Invoices</NavLink>

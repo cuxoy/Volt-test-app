@@ -8,8 +8,13 @@ import "./invoiceApp.scss";
 const InvoiceApp = () => {
   const [selectedCustomer, setSelectedCustomer] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
+  const [bgColor, setBgColor] = useState("#fff");
   const [selectedDiscount, setSelectedDiscount] = useState("");
   const [selectedProductsList, setSelectedProductsList] = useState([]);
+  const [createInvoiceVisibility, setCreateInvoiceVisibility] =
+    useState("hidden");
+  const [invoiceRequaredMassage, setInvoiceRequaredMassage] =
+    useState("hidden");
 
   const dispatch = useDispatch();
 
@@ -32,7 +37,18 @@ const InvoiceApp = () => {
       },
     ]);
   };
-
+  const onFormVisible = () => {
+    setCreateInvoiceVisibility("visible");
+    setBgColor("#4e4e4ea7");
+  };
+  const OnSubmitConfirm = () => {
+    onSubmitInvoice();
+    onSubmitCancel();
+  };
+  const onSubmitCancel = () => {
+    setCreateInvoiceVisibility("hidden");
+    setBgColor("#fff");
+  };
   const quantityChange = (e, id) => {
     const newQuantityItem = selectedProductsList.map((item) => {
       if (item.id == id) {
@@ -68,6 +84,13 @@ const InvoiceApp = () => {
     setSelectedProductsList(deletingProduct);
   };
 
+  const invoiceRequared = () => {
+    setInvoiceRequaredMassage("visible");
+    setTimeout(() => {
+      setInvoiceRequaredMassage("hidden");
+    }, 2000);
+  };
+
   const onSubmitInvoice = () => {
     const productsForSubmit = selectedProductsList.map((item) => {
       return item.name + ` : ${item.quantity} items`;
@@ -82,7 +105,7 @@ const InvoiceApp = () => {
             productsForSubmit
           )
         )
-      : console.log("choose the customer and products");
+      : invoiceRequared();
   };
 
   const productsTotal = selectedProductsList.map((item, i) => {
@@ -120,7 +143,7 @@ const InvoiceApp = () => {
   });
 
   return (
-    <div className="container">
+    <div className="container" style={{ backgroundColor: bgColor }}>
       <div className="invoice-app__subheader">
         <h2>Edit invoice</h2>
       </div>
@@ -176,6 +199,14 @@ const InvoiceApp = () => {
             <button type="submit" className="invoice-app__btn">
               Add
             </button>
+            <div className="error-message">
+            <p
+              className="error-message__text"
+              style={{ visibility: invoiceRequaredMassage }}
+            >
+              Failed! Invoice list is empty
+            </p>
+            </div>
           </div>
         </div>
       </form>
@@ -190,9 +221,22 @@ const InvoiceApp = () => {
       </table>
       <div className="total">
         <span className="total__text">Total:</span> {total} $
-        <button className="create-invoice-btn" onClick={onSubmitInvoice}>
+        <button className="create-invoice-btn" onClick={onFormVisible}>
           Create invoice
         </button>
+      </div>
+      <div
+        className="delete-confirmation"
+        style={{ visibility: createInvoiceVisibility }}
+      >
+        <h4>Confirm Submiting</h4>
+        <span>
+          {selectedCustomer} : {total}${" "}
+        </span>
+        <div className="delete-btns">
+          <button onClick={OnSubmitConfirm}>Confirm</button>
+          <button onClick={onSubmitCancel}>Cancel</button>
+        </div>
       </div>
     </div>
   );

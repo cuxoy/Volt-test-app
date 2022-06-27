@@ -19,9 +19,6 @@ const CustomersList = () => {
   const [deleteConfirm, setDeleteConfirm] = useState("hidden");
   const [deleteId, setDeleteId] = useState("");
   const [customerForDelete, setCustomerForDelete] = useState("");
-  const customerFormVisibility = useSelector(
-    (state) => state.customers.customerFormVisibility
-  );
 
   const dispatch = useDispatch();
 

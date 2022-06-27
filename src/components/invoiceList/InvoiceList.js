@@ -17,9 +17,6 @@ const InvoiceList = () => {
     name: "",
     price: "",
   });
-  const invoiceFormVisibility = useSelector(
-    (state) => state.invoices.invoiceFormVisibility
-  );
 
   const dispatch = useDispatch();
 

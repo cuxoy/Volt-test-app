@@ -48,7 +48,7 @@ function App() {
             }
           />
           <Route
-            path="/invoiceApp"
+            path="/"
             element={
               <>
                 <InvoiceApp />

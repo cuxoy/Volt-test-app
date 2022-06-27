@@ -16,9 +16,6 @@ const ProductList = () => {
     name: "",
     price: "",
   });
-  const productFormVisibility = useSelector(
-    (state) => state.products.productFormVisibility
-  );
 
   const dispatch = useDispatch();
 
