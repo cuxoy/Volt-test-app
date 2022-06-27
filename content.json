@@ -35,12 +35,6 @@
       "name": "Tamila",
       "address": "Golovuriv st #125",
       "phone": "095 536 74 98"
-    },
-    {
-      "id": "a4b75a7a-c848-4999-867d-930a76491e75",
-      "name": "Olya",
-      "address": "Киев",
-      "phone": "0505548985"
     }
   ],
   "products": [
@@ -90,5 +84,55 @@
       "price": "400"
     }
   ],
-  "invoices": []
+  "invoices": [
+    {
+      "id": "fd6028ec-afdd-4497-8590-1244b45a57d3",
+      "customer": "Tamila",
+      "price": "352.00",
+      "descount": "12",
+      "products": [
+        "banan : 1 items"
+      ]
+    },
+    {
+      "id": "97b1ea80-8a39-4038-a8b4-dc1e981e4c8c",
+      "customer": "Dima Suhar",
+      "price": "928.00",
+      "descount": "20",
+      "products": [
+        "banan : 1 items",
+        "book : 5 items"
+      ]
+    },
+    {
+      "id": "6f3299a3-7c7a-44f7-9a39-0ef720558df5",
+      "customer": "Dima Suhar",
+      "price": "1200.00",
+      "descount": "40",
+      "products": [
+        "chocolat : 4 items"
+      ]
+    },
+    {
+      "id": "0c297cfe-3c10-424a-9c76-b0b3cb18cd41",
+      "customer": "Dima Suhar",
+      "price": "1222",
+      "descount": "15"
+    },
+    {
+      "id": "2be37b32-c132-41fd-b706-f0636b230436",
+      "customer": "Tamila",
+      "price": "20000",
+      "descount": "12"
+    },
+    {
+      "id": "fd9c0e61-4140-4bb8-9473-53c3561599cc",
+      "customer": "Dima Suhar",
+      "price": "1780.00",
+      "descount": "11",
+      "products": [
+        "chocolat : 4 items"
+      ]
+    }
+  ]
 }

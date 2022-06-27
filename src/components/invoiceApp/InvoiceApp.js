@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchCustomers } from "../../actions/customersActions";
-import { fetchProducts } from "../../actions/productsActions";
+import { v4 as uuidv4 } from "uuid";
+import { addInvoice } from "../../actions/invoiceAppActions";
 import { useDispatch, useSelector } from "react-redux";
+import deleteImg from "../../icons/delete.png";
 import "./invoiceApp.scss";
 
 const InvoiceApp = () => {
@@ -11,10 +12,6 @@ const InvoiceApp = () => {
   const [selectedProductsList, setSelectedProductsList] = useState([]);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCustomers());
-    dispatch(fetchProducts());
-  }, []);
 
   const products = useSelector((state) => state.products.products);
   const customers = useSelector((state) => state.customers.customers);
@@ -27,6 +24,7 @@ const InvoiceApp = () => {
     setSelectedProductsList([
       ...selectedProductsList,
       {
+        id: uuidv4(),
         name: e.target.products.value,
         price: (price[0].price * (100 - selectedDiscount)) / 100,
         quantity: 1,
@@ -35,10 +33,11 @@ const InvoiceApp = () => {
     ]);
   };
 
-  const quantityChange = (e, activeItem) => {
+  const quantityChange = (e, id) => {
     const newQuantityItem = selectedProductsList.map((item) => {
-      if (item == activeItem) {
+      if (item.id == id) {
         return {
+          id: item.id,
           name: item.name,
           price: item.price,
           quantity: e.target.value,
@@ -50,17 +49,41 @@ const InvoiceApp = () => {
     });
     setSelectedProductsList(newQuantityItem);
   };
-
   const total =
     selectedProductsList.length > 0
       ? selectedProductsList
           .map((item) => {
-            return +(item.price * item.quantity).toFixed(1);
+            return +(item.price * item.quantity);
           })
           .reduce((sum, elem) => {
             return sum + elem;
           }, 0)
+          .toFixed(2)
       : 0;
+
+  const onDelete = (id) => {
+    const deletingProduct = selectedProductsList.filter((item) => {
+      return item.id !== id;
+    });
+    setSelectedProductsList(deletingProduct);
+  };
+
+  const onSubmitInvoice = () => {
+    const productsForSubmit = selectedProductsList.map((item) => {
+      return item.name + ` : ${item.quantity} items`;
+    });
+    selectedCustomer.length > 0 && productsForSubmit.length > 0
+      ? dispatch(
+          addInvoice(
+            uuidv4(),
+            selectedCustomer,
+            total,
+            selectedDiscount,
+            productsForSubmit
+          )
+        )
+      : console.log("choose the customer and products");
+  };
 
   const productsTotal = selectedProductsList.map((item, i) => {
     const priceAndQuantity = (item.price * item.quantity).toFixed(1);
@@ -73,7 +96,16 @@ const InvoiceApp = () => {
           <input
             type="number"
             value={item.quantity}
-            onChange={(e) => quantityChange(e, item)}
+            onChange={(e) => quantityChange(e, item.id)}
+            min={0}
+          />
+        </td>
+        <td>
+          <img
+            src={deleteImg}
+            alt="delete"
+            className="delete-img"
+            onClick={() => onDelete(item.id)}
           />
         </td>
       </tr>
@@ -81,7 +113,7 @@ const InvoiceApp = () => {
   });
 
   const productsList = products.map((item) => {
-    return <option data-price={item.price}>{item.name}</option>;
+    return <option title={item.price + "$"}>{item.name}</option>;
   });
   const customersList = customers.map((item) => {
     return <option>{item.name}</option>;
@@ -119,6 +151,9 @@ const InvoiceApp = () => {
             className="input"
             onChange={(e) => setSelectedCustomer(e.target.value)}
           >
+            <option selected disabled>
+              choose the customer
+            </option>
             {customersList}
           </select>
         </div>
@@ -133,6 +168,9 @@ const InvoiceApp = () => {
               className="input"
               onChange={(e) => setSelectedProduct(e.target.value)}
             >
+              <option selected disabled>
+                choose the product
+              </option>
               {productsList}
             </select>
             <button type="submit" className="invoice-app__btn">
@@ -152,6 +190,9 @@ const InvoiceApp = () => {
       </table>
       <div className="total">
         <span className="total__text">Total:</span> {total} $
+        <button className="create-invoice-btn" onClick={onSubmitInvoice}>
+          Create invoice
+        </button>
       </div>
     </div>
   );

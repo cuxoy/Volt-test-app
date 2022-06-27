@@ -25,10 +25,6 @@ const CustomersList = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchCustomers());
-  }, []);
-
   const onFormVisible = () => {
     setFormVisibility("visible");
     setBgColor("#4e4e4ea7");

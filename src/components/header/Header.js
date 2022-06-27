@@ -9,7 +9,9 @@ const Header = () => {
           <li>
             <NavLink to="/invoiceApp">Invoice App</NavLink>
           </li>
-          <li>Invoices</li>
+          <li>
+            <NavLink to="/invoiceList">Invoices</NavLink>
+          </li>
           <li>
             <NavLink to="/products">Products</NavLink>
           </li>
