@@ -88,7 +88,7 @@ const InvoiceApp = () => {
     setInvoiceRequaredMassage("visible");
     setTimeout(() => {
       setInvoiceRequaredMassage("hidden");
-    }, 2000);
+    }, 3000);
   };
 
   const onSubmitInvoice = () => {
@@ -200,12 +200,12 @@ const InvoiceApp = () => {
               Add
             </button>
             <div className="error-message">
-            <p
-              className="error-message__text"
-              style={{ visibility: invoiceRequaredMassage }}
-            >
-              Failed! Invoice list is empty
-            </p>
+              <p
+                className="error-message__text"
+                style={{ visibility: invoiceRequaredMassage }}
+              >
+                Failed! Invoice list is empty
+              </p>
             </div>
           </div>
         </div>

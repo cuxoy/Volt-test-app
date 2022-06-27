@@ -4,7 +4,7 @@ import {
   fetchCustomers,
   deleteCustomer,
   addCustomer,
-  changeCustomer,
+  editCustomer,
 } from "../../actions/customersActions";
 import { v4 as uuidv4 } from "uuid";
 import "./customersList.scss";
@@ -50,17 +50,32 @@ const CustomersList = () => {
     setBgColor("#4e4e4ea7");
     setDeleteConfirm("visible");
   };
+  const customers = useSelector((state) => state.customers.customers);
 
   const onAddCustomer = (e) => {
     e.preventDefault();
-    dispatch(
-      addCustomer(
-        uuidv4(),
-        e.target.name.value,
-        e.target.address.value,
-        e.target.tel.value
-      )
-    );
+    const nameExistance = customers.filter((item) => {
+      return item.name === e.target.name.value;
+    });
+    if (nameExistance[0]) {
+      dispatch(
+        editCustomer(
+          nameExistance[0].id,
+          e.target.name.value,
+          e.target.address.value,
+          e.target.tel.value
+        )
+      );
+    } else {
+      dispatch(
+        addCustomer(
+          uuidv4(),
+          e.target.name.value,
+          e.target.address.value,
+          e.target.tel.value
+        )
+      );
+    }
     onFormClosed();
   };
 
@@ -117,7 +132,7 @@ const CustomersList = () => {
           className="customer-list__modal"
           style={{ visibility: formVisibility }}
         >
-          <h3 className="customer-list__modal__title">Create new customer</h3>
+          <h3 className="customer-list__modal__title">Create( Edit ) new customer</h3>
           <form onSubmit={onAddCustomer}>
             <div className="customer-list__modal__input">
               <label htmlFor="name">New customer name</label>
