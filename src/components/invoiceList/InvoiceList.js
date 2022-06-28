@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 import { deleteInvoice, addInvoice } from "../../actions/invoiceAppActions";
+import { MoonLoader } from "react-spinners";
 import "./invoiceList.scss";
 import deleteImg from "../../icons/delete.png";
 
@@ -79,95 +80,107 @@ const InvoiceList = () => {
       );
     }
   );
-
-  return (
-    <div className="invoice-list" style={{ backgroundColor: bgColor }}>
-      <div className="invoice-list__container">
-        <div
-          className="invoice-list__modal"
-          style={{ visibility: formVisibility }}
-        >
-          <h3 className="invoice-list__modal__title">Create new invoice</h3>
-          <form onSubmit={onAddInvoice}>
-            <div className="invoice-list__modal__input">
-              <label htmlFor="name">Customer name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="customer name"
-                required="requared"
-                value={nameValue}
-                onChange={(e) => setNameValue(e.target.value)}
-              />
-            </div>
-            <div className="invoice-list__modal__input">
-              <label htmlFor="price">Total price</label>
-              <input
-                type="number"
-                name="price"
-                id="price"
-                placeholder="price"
-                required="requared"
-                value={priceValue}
-                min={0}
-                onChange={(e) => setPriceValue(e.target.value)}
-              />
-            </div>
-            <div className="invoice-list__modal__input">
-              <label htmlFor="price">Discount</label>
-              <input
-                type="number"
-                name="discount"
-                id="discount"
-                placeholder="price"
-                required="requared"
-                value={discountValue}
-                min={0}
-                max={100}
-                onChange={(e) => setDiscountValue(e.target.value)}
-              />
-            </div>
-            <div className="invoice-list__modal__btns">
-              <button>Submit</button>
-              <button type="reset" onClick={onFormClosed}>
-                Close
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="invoice-list__header">
-          <div className="invoice-list__subheader">
-            <h2>Invoices list</h2>
+  const loadingStatus = useSelector(
+    (state) => state.customers.customersLoadingStatus
+  );
+  if (loadingStatus === "loading") {
+    return (
+      <div className="loader">
+        <MoonLoader />
+      </div>
+    );
+  } else if (loadingStatus === "error") {
+    return <div className="error">ERROR</div>;
+  } else {
+    return (
+      <div className="invoice-list" style={{ backgroundColor: bgColor }}>
+        <div className="invoice-list__container">
+          <div
+            className="invoice-list__modal"
+            style={{ visibility: formVisibility }}
+          >
+            <h3 className="invoice-list__modal__title">Create new invoice</h3>
+            <form onSubmit={onAddInvoice}>
+              <div className="invoice-list__modal__input">
+                <label htmlFor="name">Customer name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="customer name"
+                  required="requared"
+                  value={nameValue}
+                  onChange={(e) => setNameValue(e.target.value)}
+                />
+              </div>
+              <div className="invoice-list__modal__input">
+                <label htmlFor="price">Total price</label>
+                <input
+                  type="number"
+                  name="price"
+                  id="price"
+                  placeholder="price"
+                  required="requared"
+                  value={priceValue}
+                  min={0}
+                  onChange={(e) => setPriceValue(e.target.value)}
+                />
+              </div>
+              <div className="invoice-list__modal__input">
+                <label htmlFor="price">Discount</label>
+                <input
+                  type="number"
+                  name="discount"
+                  id="discount"
+                  placeholder="price"
+                  required="requared"
+                  value={discountValue}
+                  min={0}
+                  max={100}
+                  onChange={(e) => setDiscountValue(e.target.value)}
+                />
+              </div>
+              <div className="invoice-list__modal__btns">
+                <button>Submit</button>
+                <button type="reset" onClick={onFormClosed}>
+                  Close
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="invoice-list__create-btn" onClick={onFormVisible}>
-            <div className="create-text">Create</div>
+          <div className="invoice-list__header">
+            <div className="invoice-list__subheader">
+              <h2>Invoices list</h2>
+            </div>
+            <div className="invoice-list__create-btn" onClick={onFormVisible}>
+              <div className="create-text">Create</div>
+            </div>
           </div>
-        </div>
-        <table>
-          <tr className="invoices-title">
-            <th>#</th>
-            <th>Name</th>
-            <th>Discount</th>
-            <th>Total</th>
-          </tr>
-          {invoicesList}
-        </table>
-        <div
-          className="delete-confirmation"
-          style={{ visibility: deleteConfirm }}
-        >
-          <h4>Confirm Deleting</h4>
-          <span>
-            {invoiceForDelete.name} : {invoiceForDelete.price}${" "}
-          </span>
-          <div className="delete-btns">
-            <button onClick={OnDeleteConfirm}>Confirm</button>
-            <button onClick={onDeleteCancel}>Cancel</button>
+          <table>
+            <tr className="invoices-title">
+              <th>#</th>
+              <th>Name</th>
+              <th>Discount</th>
+              <th>Total</th>
+            </tr>
+            {invoicesList}
+          </table>
+          <div
+            className="delete-confirmation"
+            style={{ visibility: deleteConfirm }}
+          >
+            <h4>Confirm Deleting</h4>
+            <span>
+              {invoiceForDelete.name} : {invoiceForDelete.price}${" "}
+            </span>
+            <div className="delete-btns">
+              <button onClick={OnDeleteConfirm}>Confirm</button>
+              <button onClick={onDeleteCancel}>Cancel</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 export default InvoiceList;

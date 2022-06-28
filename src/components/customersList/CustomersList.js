@@ -7,6 +7,7 @@ import {
   editCustomer,
 } from "../../actions/customersActions";
 import { v4 as uuidv4 } from "uuid";
+import { MoonLoader } from "react-spinners";
 import "./customersList.scss";
 import deleteImg from "../../icons/delete.png";
 
@@ -96,90 +97,105 @@ const CustomersList = () => {
       );
     }
   );
-
-  return (
-    <div className="customer-list" style={{ backgroundColor: bgColor }}>
-      <div className="customer-list__container">
-        <div className="customer-list__header">
-          <div className="customer-list__subheader">
-            <h2>Customer list</h2>
+  const loadingStatus = useSelector(
+    (state) => state.customers.customersLoadingStatus
+  );
+  if (loadingStatus === "loading") {
+    return (
+      <div className="loader">
+        <MoonLoader />
+      </div>
+    );
+  } else if (loadingStatus === "error") {
+    return <div className="error">ERROR</div>;
+  } else {
+    return (
+      <div className="customer-list" style={{ backgroundColor: bgColor }}>
+        <div className="customer-list__container">
+          <div className="customer-list__header">
+            <div className="customer-list__subheader">
+              <h2>Customer list</h2>
+            </div>
+            <div className="customer-list__create-btn" onClick={onFormVisible}>
+              <div className="create-text">Create</div>
+            </div>
           </div>
-          <div className="customer-list__create-btn" onClick={onFormVisible}>
-            <div className="create-text">Create</div>
+          <table>
+            <tr className="customers-title">
+              <th>#</th>
+              <th>Name</th>
+              <th>Adress</th>
+              <th>Phone number</th>
+            </tr>
+            {customersList}
+          </table>
+          <div
+            className="delete-confirmation"
+            style={{ visibility: deleteConfirm }}
+          >
+            <h4>Confirm Deleting</h4>
+            <span>{customerForDelete}</span>
+            <div className="delete-btns">
+              <button onClick={OnDeleteConfirm}>Confirm</button>
+              <button onClick={onDeleteCancel}>Cancel</button>
+            </div>
           </div>
-        </div>
-        <table>
-          <tr className="customers-title">
-            <th>#</th>
-            <th>Name</th>
-            <th>Adress</th>
-            <th>Phone number</th>
-          </tr>
-          {customersList}
-        </table>
-        <div
-          className="delete-confirmation"
-          style={{ visibility: deleteConfirm }}
-        >
-          <h4>Confirm Deleting</h4>
-          <span>{customerForDelete}</span>
-          <div className="delete-btns">
-            <button onClick={OnDeleteConfirm}>Confirm</button>
-            <button onClick={onDeleteCancel}>Cancel</button>
+          <div
+            className="customer-list__modal"
+            style={{ visibility: formVisibility }}
+          >
+            <h3 className="customer-list__modal__title">
+              Create( Edit ) new customer
+            </h3>
+            <form onSubmit={onAddCustomer}>
+              <div className="customer-list__modal__input">
+                <label htmlFor="name">New customer name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="enter the name"
+                  required="requared"
+                  value={nameValue}
+                  onChange={(e) => setNameValue(e.target.value)}
+                />
+              </div>
+              <div className="customer-list__modal__input">
+                <label htmlFor="address">New customer address</label>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  placeholder="enter the address"
+                  required="requared"
+                  value={addressValue}
+                  onChange={(e) => setAddressValue(e.target.value)}
+                />
+              </div>
+              <div className="customer-list__modal__input">
+                <label htmlFor="tel">New phone number</label>
+                <input
+                  type="tel"
+                  name="tel"
+                  id="tel"
+                  placeholder="enter phone number"
+                  required="requared"
+                  value={telValue}
+                  onChange={(e) => setTelValue(e.target.value)}
+                />
+              </div>
+              <div className="customer-list__modal__btns">
+                <button type="submit">Submit</button>
+                <button type="reset" onClick={onFormClosed}>
+                  Close
+                </button>
+              </div>
+            </form>
           </div>
-        </div>
-        <div
-          className="customer-list__modal"
-          style={{ visibility: formVisibility }}
-        >
-          <h3 className="customer-list__modal__title">Create( Edit ) new customer</h3>
-          <form onSubmit={onAddCustomer}>
-            <div className="customer-list__modal__input">
-              <label htmlFor="name">New customer name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="enter the name"
-                required="requared"
-                value={nameValue}
-                onChange={(e) => setNameValue(e.target.value)}
-              />
-            </div>
-            <div className="customer-list__modal__input">
-              <label htmlFor="address">New customer address</label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                placeholder="enter the address"
-                required="requared"
-                value={addressValue}
-                onChange={(e) => setAddressValue(e.target.value)}
-              />
-            </div>
-            <div className="customer-list__modal__input">
-              <label htmlFor="tel">New phone number</label>
-              <input
-                type="tel"
-                name="tel"
-                id="tel"
-                placeholder="enter phone number"
-                required="requared"
-                value={telValue}
-                onChange={(e) => setTelValue(e.target.value)}
-              />
-            </div>
-            <div className="customer-list__modal__btns">
-              <button type="submit">Submit</button>
-              <button type="reset" onClick={onFormClosed}>
-                Close
-              </button>
-            </div>
-          </form>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
+
 export default CustomersList;

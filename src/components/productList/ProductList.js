@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProduct, addProduct } from "../../actions/productsActions";
 import { v4 as uuidv4 } from "uuid";
+import { MoonLoader } from "react-spinners";
 import "./productList.scss";
 import deleteImg from "../../icons/delete.png";
 
@@ -69,79 +70,91 @@ const ProductList = () => {
       );
     }
   );
-
-  return (
-    <div className="product-list" style={{ backgroundColor: bgColor }}>
-      <div className="product-list__container">
-        <div
-          className="product-list__modal"
-          style={{ visibility: formVisibility }}
-        >
-          <h3 className="product-list__modal__title">Create new product</h3>
-          <form onSubmit={onAddProduct}>
-            <div className="product-list__modal__input">
-              <label htmlFor="name">New product name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="product name"
-                required="requared"
-                value={nameValue}
-                onChange={(e) => setNameValue(e.target.value)}
-              />
-            </div>
-            <div className="product-list__modal__input">
-              <label htmlFor="price">New product price</label>
-              <input
-                type="number"
-                name="price"
-                id="price"
-                placeholder="price"
-                required="requared"
-                value={priceValue}
-                onChange={(e) => setPriceValue(e.target.value)}
-              />
-            </div>
-            <div className="product-list__modal__btns">
-              <button>Submit</button>
-              <button type="reset" onClick={onFormClosed}>
-                Close
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="product-list__header">
-          <div className="product-list__subheader">
-            <h2>Product list</h2>
+  const loadingStatus = useSelector(
+    (state) => state.products.productsLoadingStatus
+  );
+  if (loadingStatus === "loading") {
+    return (
+      <div className="loader">
+        <MoonLoader />
+      </div>
+    );
+  } else if (loadingStatus === "error") {
+    return <div className="error">ERROR</div>;
+  } else {
+    return (
+      <div className="product-list" style={{ backgroundColor: bgColor }}>
+        <div className="product-list__container">
+          <div
+            className="product-list__modal"
+            style={{ visibility: formVisibility }}
+          >
+            <h3 className="product-list__modal__title">Create new product</h3>
+            <form onSubmit={onAddProduct}>
+              <div className="product-list__modal__input">
+                <label htmlFor="name">New product name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="product name"
+                  required="requared"
+                  value={nameValue}
+                  onChange={(e) => setNameValue(e.target.value)}
+                />
+              </div>
+              <div className="product-list__modal__input">
+                <label htmlFor="price">New product price</label>
+                <input
+                  type="number"
+                  name="price"
+                  id="price"
+                  placeholder="price"
+                  required="requared"
+                  value={priceValue}
+                  onChange={(e) => setPriceValue(e.target.value)}
+                />
+              </div>
+              <div className="product-list__modal__btns">
+                <button>Submit</button>
+                <button type="reset" onClick={onFormClosed}>
+                  Close
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="product-list__create-btn" onClick={onFormVisible}>
-            <div className="create-text">Create</div>
+          <div className="product-list__header">
+            <div className="product-list__subheader">
+              <h2>Product list</h2>
+            </div>
+            <div className="product-list__create-btn" onClick={onFormVisible}>
+              <div className="create-text">Create</div>
+            </div>
           </div>
-        </div>
-        <table>
-          <tr className="products-title">
-            <th>#</th>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-          {productsList}
-        </table>
-        <div
-          className="delete-confirmation"
-          style={{ visibility: deleteConfirm }}
-        >
-          <h4>Confirm Deleting</h4>
-          <span>
-            {productForDelete.name} : {productForDelete.price}${" "}
-          </span>
-          <div className="delete-btns">
-            <button onClick={OnDeleteConfirm}>Confirm</button>
-            <button onClick={onDeleteCancel}>Cancel</button>
+          <table>
+            <tr className="products-title">
+              <th>#</th>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+            {productsList}
+          </table>
+          <div
+            className="delete-confirmation"
+            style={{ visibility: deleteConfirm }}
+          >
+            <h4>Confirm Deleting</h4>
+            <span>
+              {productForDelete.name} : {productForDelete.price}${" "}
+            </span>
+            <div className="delete-btns">
+              <button onClick={OnDeleteConfirm}>Confirm</button>
+              <button onClick={onDeleteCancel}>Cancel</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 export default ProductList;

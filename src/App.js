@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductList from "./components/productList/ProductList";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Helmet } from "react-helmet";
 import CustomersList from "./components/customersList/CustomersList";
 import InvoiceApp from "./components/invoiceApp/InvoiceApp";
 import InvoiceList from "./components/invoiceList/InvoiceList";
@@ -27,6 +28,10 @@ function App() {
             path="/customers"
             element={
               <>
+                <Helmet>
+                  <title>Customer list</title>
+                  <meta name="description" content="Helmet application" />
+                </Helmet>
                 <CustomersList />
               </>
             }
@@ -35,6 +40,10 @@ function App() {
             path="/invoiceList"
             element={
               <>
+                <Helmet>
+                  <title>Invoive list</title>
+                  <meta name="description" content="Helmet application" />
+                </Helmet>
                 <InvoiceList />
               </>
             }
@@ -43,6 +52,10 @@ function App() {
             path="/products"
             element={
               <>
+                <Helmet>
+                  <title>Procuct List</title>
+                  <meta name="description" content="Helmet application" />
+                </Helmet>
                 <ProductList />
               </>
             }
@@ -51,6 +64,10 @@ function App() {
             path="/"
             element={
               <>
+                <Helmet>
+                  <title>Invoice App</title>
+                  <meta name="description" content="Helmet application" />
+                </Helmet>
                 <InvoiceApp />
               </>
             }

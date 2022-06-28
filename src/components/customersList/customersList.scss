@@ -41,6 +41,7 @@
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    z-index: 2;
     &__input {
       margin-top: 20px;
       input {
@@ -129,4 +130,9 @@
   margin-top: 40px;
   display: flex;
   justify-content: space-around;
+}
+.loader {
+  position: absolute;
+  left: 45%;
+  top: 30%;
 }
