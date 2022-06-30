@@ -25,12 +25,6 @@
       "phone": "095 536 74 98"
     },
     {
-      "id": "b923abff-eaa6-465a-9dee-9336bfd8ef11",
-      "name": "Dima Suhar",
-      "address": "Borispil",
-      "phone": "0662569426"
-    },
-    {
       "id": "d758c6c6-d094-4554-9eac-8bc33fab7a4d",
       "name": "Diman",
       "address": "Киев",
@@ -78,6 +72,16 @@
       "id": "2db2d600-23d0-4a27-8e65-9e244e3c03e8",
       "name": "chocolat",
       "price": "500"
+    },
+    {
+      "id": "02280619-ee5e-499f-bc5b-0220201e4f32",
+      "name": "beer",
+      "price": "100"
+    },
+    {
+      "id": "77892d94-5f68-45e1-83bb-eafe68dfc520",
+      "name": "samogon",
+      "price": "10"
     }
   ],
   "invoices": [
@@ -122,10 +126,31 @@
       "descount": "12"
     },
     {
-      "id": "9c04ee3e-1a9a-4e2e-9c7a-14947a3f2f3d",
+      "id": "47ac0e66-6b0d-4bd2-8896-83ab6ec23c9c",
       "customer": "Dima Suhar",
-      "price": "1222",
-      "descount": "11"
+      "price": "3360.00",
+      "descount": "4",
+      "products": [
+        "chocolat : 7 items"
+      ]
+    },
+    {
+      "id": "2a3ce364-70f5-4b7d-9c0c-f1a1cae02c6e",
+      "customer": "Dima",
+      "price": "2975.00",
+      "descount": "15",
+      "products": [
+        "chocolat : 7 items"
+      ]
+    },
+    {
+      "id": "1dd4bec2-8cae-4e8d-944e-63158dfe1d2d",
+      "customer": "Tamila",
+      "price": "450.00",
+      "descount": "50",
+      "products": [
+        "samogon : 50 items"
+      ]
     }
   ]
 }

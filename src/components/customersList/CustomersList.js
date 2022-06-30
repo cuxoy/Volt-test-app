@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  fetchCustomers,
   deleteCustomer,
   addCustomer,
   editCustomer,
-} from "../../actions/customersActions";
+} from "../../middlewares/castomersMiddlewares";
 import { v4 as uuidv4 } from "uuid";
 import { MoonLoader } from "react-spinners";
 import "./customersList.scss";

@@ -7,9 +7,9 @@ import { Helmet } from "react-helmet";
 import CustomersList from "./components/customersList/CustomersList";
 import InvoiceApp from "./components/invoiceApp/InvoiceApp";
 import InvoiceList from "./components/invoiceList/InvoiceList";
-import { fetchProducts } from "./actions/productsActions";
-import { fetchInvoices } from "./actions/invoiceAppActions";
-import { fetchCustomers } from "./actions/customersActions";
+import { fetchProducts } from "./middlewares/productsMiddlewares";
+import { fetchInvoices } from "./middlewares/invoicesMiddlewares";
+import { fetchCustomers } from "./middlewares/castomersMiddlewares";
 import "./App.css";
 
 function App() {

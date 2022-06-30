@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { addInvoice } from "../../actions/invoiceAppActions";
+import { addInvoice } from "../../middlewares/invoicesMiddlewares";
 import { useDispatch, useSelector } from "react-redux";
 import deleteImg from "../../icons/delete.png";
 import "./invoiceApp.scss";
@@ -204,7 +204,7 @@ const InvoiceApp = () => {
                 className="error-message__text"
                 style={{ visibility: invoiceRequaredMassage }}
               >
-                Failed! Invoice list is empty
+                Failed! Choose castomer and products
               </p>
             </div>
           </div>

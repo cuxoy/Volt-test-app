@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
-import { deleteInvoice, addInvoice } from "../../actions/invoiceAppActions";
+import { deleteInvoice, addInvoice } from "../../middlewares/invoicesMiddlewares";
 import { MoonLoader } from "react-spinners";
 import "./invoiceList.scss";
 import deleteImg from "../../icons/delete.png";

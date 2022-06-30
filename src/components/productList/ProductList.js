@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProduct, addProduct } from "../../actions/productsActions";
+import {
+  deleteProduct,
+  addProduct,
+} from "../../middlewares/productsMiddlewares";
 import { v4 as uuidv4 } from "uuid";
 import { MoonLoader } from "react-spinners";
 import "./productList.scss";
