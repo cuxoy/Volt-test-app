@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+Общие требования
+Задание заключается в реализации SPA-приложение на React. Должны быть выполнены следующие условия:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Приложение должно быть упаковано в JS-бандл с помощью webpack
+Приложение должно иметь навигацию c использованием History API
+В зависимости от выбранного интерфейса должен быть установлен соответствующий document title
+Интерфейсы должны быть свёрстаны с применением react-bootstrap
+Выбор реализации data flow на ваше усмотрение
+Основное задание. Интерфейсы покупателей и товаров.
+Требуется реализовать следующие интерфейсы:
 
-## Available Scripts
+Интерфейс покупателей (mockups/customers.png)
+Интерфейс товаров (mockups/products.png)
+Каждый интерфейс должен быть реализован на отдельном маршруте роутера.
 
-In the project directory, you can run:
+Интерфейс покупателей
+Реализовать список покупателей с добавлением/редактированием/удалением элементов (см. раздел Схема REST API -> Customers).
 
-### `npm start`
+Создание покупателя должно быть реализовано в модальном окне. Редактирование покупателя должно быть реализовано в модальном окне. Подтверждение удаления покупателя должно быть реализовано в модальном окне. Интерфейс товаров Реализовать список товаров с добавлением/редактированием/удалением элементов (см. раздел Схема REST API -> Products). Создание товара должно быть реализовано в модальном окне. Редактирование товара должно быть реализовано в модальном окне. Подтверждение удаления товара должно быть реализовано в модальном окне.
 
-Runs the app in the development mode.\
-Open [localhost:3000](http://localhost:3000) to view it in your browser.
+Дополнительное задание. Интерфейсы списка счетов и создания/редактирования счёта
+Требуется дополнительно реализовать следующие интерфейсы:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Интерфейс счетов (mockups/invoice-list.png) Интерфейс создания/редактирования счёта (mockups/invoice-edit.png) Каждый интерфейс должен быть реализован на отдельном маршруте роутера.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Интерфейс счетов
+Реализовать список счетов с добавлением/редактированием/удалением элементов (см. раздел Схема REST API -> Invoices). Подтверждение удаления счёта должно быть реализовано в модальном окне.
